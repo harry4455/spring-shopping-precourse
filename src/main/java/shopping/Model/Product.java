@@ -1,22 +1,62 @@
 package shopping.Model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Product {
 
-    @Id
-    private Long productId;
 
-    private String productName;
-    private Integer price;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String name;
+    private Double price;
     private String imgUrl;
 
-    public Product(String productName, Integer price, String imgUrl) {
-        this.productName = productName;
-        this.price = price;
+    public Product() {
+    }
+
+    public Product(String imgUrl, String name, Double price) {
         this.imgUrl = imgUrl;
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "name='" + name + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", price=" + price +
+                '}';
     }
 
 }
