@@ -47,4 +47,11 @@ public class ProductController {
 
         return products.get(name);
     }
+
+    // 상품 삭제
+    @DeleteMapping("/api/products")
+    public Product deleteProduct(@RequestParam(required = true) String name) {
+
+        return products.remove(name);
+    }
 }

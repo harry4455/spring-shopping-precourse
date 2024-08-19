@@ -61,4 +61,16 @@ public class ProductControllerTest {
         assertThat(actual).isEqualTo(product);
         assertThat(actual.getPrice()).isEqualTo(100000.0);
     }
+
+    @Test
+    void 상품을_삭제한다() {
+        Product grape = productController.getProducts("grape");
+        var url = "http://localhost:"+port+"/api/products?name={name}";
+        final Product actual = restClient.delete()
+                .uri(url, grape.getName())
+                .retrieve()
+                .body(Product.class);
+
+        assertThat(actual).isEqualTo(grape);
+    }
 }
