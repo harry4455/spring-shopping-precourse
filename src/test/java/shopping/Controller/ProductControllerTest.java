@@ -16,6 +16,8 @@ public class ProductControllerTest {
     @Autowired
     private ProductController productController;
 
+
+
     @Test
     void 상품명으로_조회한다() {
         var actual = productController.getProducts("apple");
@@ -29,5 +31,12 @@ public class ProductControllerTest {
         Product product = new Product("url2", "grape", 1000.0);
         Boolean b = productController.addProduct(product);
         assertThat(b).isTrue();
+    }
+
+    @Test
+    void 상품을_수정한다() {
+        Product product = new Product("url33333", "grape", 100000.0);
+        Product updatedProduct = productController.updateProduct(product.getName(), product);
+        assertThat(updatedProduct).isEqualTo(productController.getProducts(product.getName()));
     }
 }
