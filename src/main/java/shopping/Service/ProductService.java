@@ -20,9 +20,11 @@ public class ProductService {
         product.setImgUrl("url");
         product.setPrice(100.0);
 
-
         return product;
-//        return productRepository.findByName(name);
     }
 
+    public int addProduct(Product product) {
+
+        return 0;
+    }
 }

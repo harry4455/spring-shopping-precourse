@@ -30,4 +30,12 @@ public class ProductController {
         return null;
     }
 
+    // 상품 추가
+    @PostMapping("/api/products")
+    public Boolean addProduct(@RequestBody Product product) {
+        Product newProduct = new Product(product.getImgUrl(), product.getName(), product.getPrice());
+        products.put(3L, newProduct);
+        return products.containsValue(product);
+    }
+
 }

@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.Objects;
+
 @Entity
 public class Product {
 
@@ -12,6 +14,18 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product product)) return false;
+        return Objects.equals(name, product.name) && Objects.equals(price, product.price) && Objects.equals(imgUrl, product.imgUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price, imgUrl);
+    }
 
     private String name;
     private Double price;
