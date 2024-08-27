@@ -22,26 +22,32 @@ public class ProductControllerTest {
     @Autowired
     private RestClient.Builder restClientBuilder;
 
-//    @Test
-//    void 상품명으로_조회한다() {
-//
-//        var url = "http://localhost:" + port + "/api/products?name={name}";
-//        System.out.println("url = " + url);
-//        var response = restClient.get()
-//                .uri(url, "apple")
-//                .retrieve()
-//                .toEntity(String.class);
-//
-//        System.out.println("response = " + response.getHeaders());
-//
-//        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-//    }
+    @Test
+    void 상품명으로_조회한다() {
+
+        var url = "http://localhost:8080/api/products?name={name}";
+
+        // RestClient 인스턴스 생성
+        var restClient = restClientBuilder.build();
+
+        System.out.println("url = " + url);
+        var response = restClient.get()
+                .uri(url, "grape")
+                .retrieve()
+                .toEntity(String.class);
+
+        System.out.println("response = " + response.getHeaders());
+
+        Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
 
     @Test
     void 상품을_등록한다() {
         Product product = new Product("url2", "grape", 1000);
 
-        var url = "http://localhost:" + port + "/api/products";
+        var url = "http://localhost:8080/api/products";
+
+        System.out.println("url = " + url);
 
         // RestClient 인스턴스 생성
         var restClient = restClientBuilder.build();
