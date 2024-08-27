@@ -1,10 +1,12 @@
 package shopping.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import shopping.Model.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
+    @Query("select p from Product p where p.name = :name")
     Product findByName(String name);
 
 }

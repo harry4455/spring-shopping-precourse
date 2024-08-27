@@ -1,43 +1,32 @@
 package shopping.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "product")
 public class Product {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Product product)) return false;
-        return Objects.equals(name, product.name) && Objects.equals(price, product.price) && Objects.equals(imgUrl, product.imgUrl);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, price, imgUrl);
-    }
-
-    private String name;
-    private Double price;
-    private String imgUrl;
-
     public Product() {
     }
 
-    public Product(String imgUrl, String name, Double price) {
+    private String name;
+    private Integer price;
+    private String imgUrl;
+
+    public Product(String imgUrl, String name, Integer price) {
         this.imgUrl = imgUrl;
         this.name = name;
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getImgUrl() {
@@ -56,11 +45,11 @@ public class Product {
         this.name = name;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

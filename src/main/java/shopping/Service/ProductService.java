@@ -1,5 +1,6 @@
 package shopping.Service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import shopping.Model.Product;
@@ -13,18 +14,13 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public Product findByName(String name) {
-
-        Product product = new Product();
-
-        product.setName("apple");
-        product.setImgUrl("url");
-        product.setPrice(100.0);
-
-        return product;
+        return productRepository.findByName(name);
     }
 
-    public int addProduct(Product product) {
-
-        return 0;
+    @Transactional
+    public Product addProduct(Product product) {
+        Product save = productRepository.save(product);
+        System.out.println("save = " + save);
+        return save;
     }
 }
